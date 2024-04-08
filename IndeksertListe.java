@@ -132,4 +132,16 @@ class IndeksertListe<E> extends Lenkeliste<E> {
             return retur;
         }
     }
+
+    @Override
+    public boolean hasNext(){
+        return peker != null;
+    }
+
+    @Override 
+    public E next(){
+        E data = peker.data;
+        peker = peker.neste;
+        return data;
+    }
 }

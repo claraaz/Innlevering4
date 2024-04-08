@@ -17,4 +17,9 @@ public class Pasient {
     public void leggTilResept(Resept r){
         resepter.add(r);
     }
+
+    @Override
+    public String toString() {
+        return "Pasient: " + navn + " Fødselsnr: " + foedselsnr;
+    }
 }
