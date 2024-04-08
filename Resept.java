@@ -27,7 +27,7 @@ public abstract class Resept {
 
     public Lege hentLege() {return utskrivendeLege;}
 
-    public int hentPasientId() {return pasientId;}
+    public Pasient hentPasient() {return pasient;}
 
     public int hentReit() {return reit;}
 
@@ -49,7 +49,7 @@ public abstract class Resept {
     // Overrider toString med info, overrides også i subklassene.
     @Override
     public String toString() {
-        String streng = "Legemiddel: " + legemiddel.hentNavn() + "\n" + "Lege: " + utskrivendeLege.hentNavn() + "\n" + "PasientId: " + pasientId + "\n" + "Reit: " + reit + "\n" + "ReseptId: " + reseptId;
+        String streng = "Legemiddel: " + legemiddel.hentNavn() + "\n" + "Lege: " + utskrivendeLege.hentNavn() + "\n" + "Pasient: " + pasient + "\n" + "Reit: " + reit + "\n" + "ReseptId: " + reseptId;
         return streng;
     }
 
