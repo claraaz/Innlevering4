@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 // I en lenkeliste legges nye objekter til sist i listen,
 // og de som ble lagt til først, fjeres først (først i listen)
 
@@ -6,7 +8,7 @@
 // Ettersom alle testen kjører fint, har jeg latt det være i koden. I prioritetskø viser jeg at jeg kan å 
 // implementere metodene hvor like elementer legges til.
 
-abstract class Lenkeliste<E> implements Liste<E> {
+abstract class Lenkeliste<E> implements Liste<E>{
     
     public int stoerrelse = 0;
     public Node foerste = null, siste = null;
@@ -17,6 +19,28 @@ abstract class Lenkeliste<E> implements Liste<E> {
 
         public Node(E data) {
             this.data = data;
+        }
+    }
+
+    @Override
+    public Iterator<E> iterator(){
+        return new LenkelisteIterator();
+    }
+
+    private class LenkelisteIterator implements Iterator<E>{
+
+        Node peker = foerste;
+
+        @Override
+        public boolean hasNext(){
+            return peker != null;
+        }
+
+        @Override 
+        public E next(){
+            E data = peker.data;
+            peker = peker.neste;
+            return data;
         }
     }
     
