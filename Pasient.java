@@ -16,6 +16,8 @@ public class Pasient {
 
     public int hentId() {return id;}
 
+    public String hentFoedselsnr() {return foedselsnr;}
+
     public void leggTilResept(Resept r){
         resepter.add(r);
     }

@@ -86,11 +86,40 @@ public class Legesystem {
                 // har legemiddelNummer, legenavn, pasientID, type, [reit](int)
                 // (Legemiddel legemiddel, Lege lege, Pasient pasient, [int reit])
                 else if (teller == 4) {
+                    Lege lege = null;
+                    Pasient pasient = null;
+
+                    // henter Legemiddel-objekt fra legemiddelNummeret
                     Legemiddel legemiddel = legemidler.hent(Integer.parseInt(biter[0]));
+                    // henter Lege-objekt fra legenavn
                     for (Lege l : leger) {
                         if (l.hentNavn().equals(biter[1])) {
-                            Lege lege = l;
+                            lege = l;
                         }
+                    }
+                    // henter Pasient-objekt fra pasientID
+                    for (Pasient p : pasienter) {
+                        if (p.hentFoedselsnr().equals(biter[2])) {
+                            pasient = p;
+                        }
+                    }
+
+                    // lager resept basert på gitt type i filen
+                    // type er "hvit", "blaa", "militaer" eller "p"
+                    String type = biter[3];
+                    if (type.equals("hvit") && !(legemiddel instanceof Narkotisk)) {
+                        Resept resept = lege.skrivHvitResept(legemiddel, pasient, Integer.parseInt(biter[4]));
+                        resepter.leggTil(resept.hentId(), resept);
+                    }
+                    // TODO kun speialister kan skrive ut narkotiske legemiddel!!!
+                    else if (type.equals("blaa")) {
+                        Resept resept = lege.skrivBlaaResept(legemiddel, pasient, Integer.parseInt(biter[4]));
+                    }
+                    else if (type.equals("militaer")) {
+                        Resept resept = lege.skrivMilResept(legemiddel, pasient);
+                    }
+                    else if (type.equals("p")) {
+                        Resept resept = lege.skrivPResept(legemiddel, pasient, Integer.parseInt(biter[4]));
                     }
 
                 }
