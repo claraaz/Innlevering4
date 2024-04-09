@@ -87,6 +87,12 @@ public class Legesystem {
                 // (Legemiddel legemiddel, Lege lege, Pasient pasient, [int reit])
                 else if (teller == 4) {
                     Legemiddel legemiddel = legemidler.hent(Integer.parseInt(biter[0]));
+                    for (Lege l : leger) {
+                        if (l.hentNavn().equals(biter[1])) {
+                            Lege lege = l;
+                        }
+                    }
+
                 }
 
 
