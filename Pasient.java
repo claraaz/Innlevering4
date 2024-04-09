@@ -14,6 +14,8 @@ public class Pasient {
         idNr++;
     }
 
+    public int hentId() {return id;}
+
     public void leggTilResept(Resept r){
         resepter.add(r);
     }

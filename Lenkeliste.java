@@ -27,7 +27,7 @@ abstract class Lenkeliste<E> implements Liste<E>{
         return new LenkelisteIterator();
     }
 
-    private class LenkelisteIterator implements Iterator<E>{
+    private class LenkelisteIterator implements Iterator<E> {
 
         Node peker = foerste;
 

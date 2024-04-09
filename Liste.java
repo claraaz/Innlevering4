@@ -1,7 +1,7 @@
 import java.util.Iterator;
 
 // implementeres av klassen Lenkeliste
-interface Liste<E> extends Iterator<E> {
+interface Liste<E> extends Iterable<E> {
     int stoerrelse();
     void leggTil(E data);
     E hent();

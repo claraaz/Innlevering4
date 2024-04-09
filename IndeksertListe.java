@@ -1,6 +1,7 @@
 // Parameter pos følger tellemåten til indeks, indeks 0 har pos(isjon) 0. 
-class IndeksertListe<E> extends Lenkeliste<E> {
 
+class IndeksertListe<E> extends Lenkeliste<E> {
+    
     // Legger til på gitt posisjon.
     public void leggTil (int pos, E data){
         Node ny = new Node(data);
@@ -131,17 +132,5 @@ class IndeksertListe<E> extends Lenkeliste<E> {
             peker.neste.forrige = peker.forrige;
             return retur;
         }
-    }
-
-    @Override
-    public boolean hasNext(){
-        return peker != null;
-    }
-
-    @Override 
-    public E next(){
-        E data = peker.data;
-        peker = peker.neste;
-        return data;
     }
 }

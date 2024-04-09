@@ -19,6 +19,8 @@ public abstract class Legemiddel {
         idNr++;
     }
 
+    public int hentId() {return id;}
+
     // Returnerer prisen (int)
     public int hentPris() {return pris;}
 
