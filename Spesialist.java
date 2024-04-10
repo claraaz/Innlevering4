@@ -16,9 +16,9 @@ public class Spesialist extends Lege implements Godkjenningsfritak {
 
     @Override
     public HvitResept skrivHvitResept (Legemiddel legemiddel, Pasient pasient, int reit) {
-        HvitResept ny = new HvitResept(legemiddel, this, pasient, reit);
-        utskrevneResepter.leggTil(0, ny); // 
-        return ny;
+            HvitResept ny = new HvitResept(legemiddel, this, pasient, reit);
+            utskrevneResepter.leggTil(0, ny);
+            return ny;
     }
 
     @Override

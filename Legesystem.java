@@ -17,13 +17,51 @@ public class Legesystem {
             System.out.println("Fant ikke filen.");
         }
 
-
+        catch (UlovligUtskrift e){
+            System.out.println(e.getMessage());
+        }
     }
 
     // invariant1 --> filnavn sendes inn på formatet "filnavn.txt"
     // invariant2 --> teller == 1: pasienter, teller == 2: legemidler, teller == 3: leger, teller == 4: resepter
 
-    public static void lesFraFil(String filnavn, IndeksertListe<Pasient> pasienter, IndeksertListe<Legemiddel> legemidler, Prioritetskoe<Lege> leger,IndeksertListe<Resept> resepter) throws FileNotFoundException {
+    
+    public static void lagProgram(IndeksertListe<Pasient> pasienter, IndeksertListe<Legemiddel> legemidler, Prioritetskoe<Lege> leger,IndeksertListe<Resept> resepter) {
+        Scanner tastatur = new Scanner(System.in);
+
+        System.out.println("Velkommen til Legesystem!");
+        System.out.println("-----VALGMENY-----");
+
+        System.out.println("0: Utskrift over alle pasienter, leger, legemidler og resepter.");
+        // System.out.println("1: Legg til en ny pasient / lege / legemiddel / resept.");
+        System.out.println("Ditt valg: ");
+        int valg = tastatur.nextInt();
+
+        if (valg == 0) {
+            System.out.println("Pasienter:");
+            for (Pasient pasient : pasienter) {
+                System.out.println(pasient);
+            }
+
+            System.out.println("Leger:");
+            for (Lege lege : leger) {
+                System.out.println(lege);
+            }
+
+            System.out.println("Legemidler:");
+            for (Legemiddel legemiddel : legemidler) {
+                System.out.println(legemiddel);
+            }
+
+            System.out.println("Resepter:");
+            for (Resept resept : resepter) {
+                System.out.println(resept);
+            }
+        }
+
+    }
+    
+    public static void lesFraFil(String filnavn, IndeksertListe<Pasient> pasienter, IndeksertListe<Legemiddel> legemidler, Prioritetskoe<Lege> leger,IndeksertListe<Resept> resepter) throws FileNotFoundException, UlovligUtskrift {
 
         Scanner fil = new Scanner(new File(filnavn));
         int teller = 0;
@@ -107,28 +145,42 @@ public class Legesystem {
                     // lager resept basert på gitt type i filen
                     // type er "hvit", "blaa", "militaer" eller "p"
                     String type = biter[3];
-                    if (type.equals("hvit") && !(legemiddel instanceof Narkotisk)) {
-                        Resept resept = lege.skrivHvitResept(legemiddel, pasient, Integer.parseInt(biter[4]));
-                        resepter.leggTil(resept.hentId(), resept);
+                    if (type.equals("hvit")) {
+                        if (legemiddel instanceof Narkotisk) {
+                            System.out.println("Legemiddelet" + legemiddel.hentNavn() + " kan ikke skrives ut på hvit resept.");
+                        } else {
+                            Resept resept = lege.skrivHvitResept(legemiddel, pasient, Integer.parseInt(biter[4]));
+                            resepter.leggTil(resept.hentId(), resept);
+                        }
                     }
-                    // TODO kun speialister kan skrive ut narkotiske legemiddel!!!
                     else if (type.equals("blaa")) {
                         Resept resept = lege.skrivBlaaResept(legemiddel, pasient, Integer.parseInt(biter[4]));
+                        resepter.leggTil(resept.hentId(), resept);
                     }
                     else if (type.equals("militaer")) {
+                        if (legemiddel instanceof Narkotisk) { 
+                            System.out.println("Legemiddelet" + legemiddel.hentNavn() + " kan ikke skrives ut på militaer resept.");
+
+                        } else {
                         Resept resept = lege.skrivMilResept(legemiddel, pasient);
+                        resepter.leggTil(resept.hentId(), resept);
+                        }
                     }
                     else if (type.equals("p")) {
-                        Resept resept = lege.skrivPResept(legemiddel, pasient, Integer.parseInt(biter[4]));
+                        if (legemiddel instanceof Narkotisk) {
+                            System.out.println("Legemiddelet" + legemiddel.hentNavn() + " kan ikke skrives ut på p-resept.");
+
+                        } else {
+                            Resept resept = lege.skrivPResept(legemiddel, pasient, Integer.parseInt(biter[4]));
+                            resepter.leggTil(resept.hentId(), resept);
+                        }
                     }
-
                 }
-
-
             }
-
         }
 
         fil.close();
     }
+
+
 }
