@@ -59,6 +59,8 @@ public class Legesystem {
             }
         }
 
+        tastatur.close();
+
     }
     
     public static void lesFraFil(String filnavn, IndeksertListe<Pasient> pasienter, IndeksertListe<Legemiddel> legemidler, Prioritetskoe<Lege> leger,IndeksertListe<Resept> resepter) throws FileNotFoundException, UlovligUtskrift {
