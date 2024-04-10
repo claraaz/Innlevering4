@@ -11,7 +11,7 @@ public class Legesystem {
         IndeksertListe<Resept> resepter = new IndeksertListe<>();
 
         try {
-            lesFraFil("fildata.txt", pasienter, legemidler, leger, resepter);
+            lesFraFil("legedata.txt", pasienter, legemidler, leger, resepter);
         }
         catch (FileNotFoundException e){
             System.out.println("Fant ikke filen.");
@@ -20,6 +20,8 @@ public class Legesystem {
         catch (UlovligUtskrift e){
             System.out.println(e.getMessage());
         }
+
+        lagProgram(pasienter, legemidler, leger, resepter);
     }
 
     // invariant1 --> filnavn sendes inn på formatet "filnavn.txt"
@@ -38,24 +40,25 @@ public class Legesystem {
         int valg = tastatur.nextInt();
 
         if (valg == 0) {
-            System.out.println("Pasienter:");
+            System.out.println("\n---Pasienter---");
             for (Pasient pasient : pasienter) {
                 System.out.println(pasient);
             }
 
-            System.out.println("Leger:");
+            System.out.println("\n---Leger---");
             for (Lege lege : leger) {
                 System.out.println(lege);
             }
 
-            System.out.println("Legemidler:");
+            System.out.println("\n---Legemidler---");
             for (Legemiddel legemiddel : legemidler) {
                 System.out.println(legemiddel);
             }
 
-            System.out.println("Resepter:");
+            System.out.println("\n---Resepter---");
             for (Resept resept : resepter) {
                 System.out.println(resept);
+                System.out.println();
             }
         }
 

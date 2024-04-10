@@ -60,7 +60,7 @@ public class Lege implements Comparable<Lege>{
     // Overrider toString() for å skrive ut info.
     @Override
     public String toString() {
-        return "Lege: " + navn;
+        return navn;
     }
 
     // returnerer et heltall, positivt heltall --> this først, negativt heltall --> parameter-lege først, 0 --> samme lege

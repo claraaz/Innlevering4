@@ -30,7 +30,7 @@ public abstract class Legemiddel {
     // Overrider toString med info, overrides også i subklassene.
     @Override
     public String toString() {
-        String streng = "Legemiddel: " + navn + "\n" + "Pris: " + pris + "kr" + "\n" + "Virkestoff i mg: " + virkestoff + "\n" + "Id: " + id;
+        String streng = navn + "\n" + "Pris: " + pris + "kr" + " Virkestoff i mg: " + virkestoff + " Id: " + id;
         return streng;
     }
 
